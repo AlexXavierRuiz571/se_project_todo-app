@@ -16,7 +16,6 @@ const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-const todoTemplate = document.querySelector("#todo-template");
 const todosList = document.querySelector(".todos__list");
 
 const openModal = (modal) => {
@@ -47,7 +46,7 @@ addTodoForm.addEventListener("submit", (evt) => {
   const todo = generateTodo(values);
   todosList.append(todo);
 
-  formValidator.disableButtonAndResetForm();
+  formValidator.resetValidation();
 
   closeModal(addTodoPopup);
 });

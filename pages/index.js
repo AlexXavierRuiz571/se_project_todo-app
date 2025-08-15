@@ -1,7 +1,7 @@
-import { v4 as uuidv4 } from "https://jspm.dev/uuid";
-import { initialTodos, validationConfig } from "../utils/constants.js";
+import { v4 as uuidv4 } from "https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-browser/index.js";
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
+import { initialTodos, validationConfig } from "../utils/constants.js";
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");

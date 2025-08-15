@@ -24,39 +24,7 @@ A small, modular to-do application refactored into OOP in **Sprint 7 · Section 
   - `Todo` — builds a single to-do from a `<template>`, wires delete + checkbox.
   - `FormValidator` — validates a specific form; exposes `enableValidation()` and `resetValidation()`.
 - **UUID v4** via CDN: `https://jspm.dev/uuid`
-- **Dev**: VS Code + **Live Server** (required for ES modules)
-
----
-
-## Project Structure
-
-se_project_todo-app/
-├── index.html
-├── components/
-│   ├── Todo.js
-│   └── FormValidator.js
-├── pages/
-│   ├── index.css
-│   └── index.js
-├── scripts/
-│   └── validate.js
-├── utils/
-│   └── constants.js
-├── blocks/
-│   ├── button.css
-│   ├── counter.css
-│   ├── form.css
-│   ├── header.css
-│   ├── page.css
-│   ├── popup.css
-│   ├── todo.css
-│   └── todos.css
-├── vendor/
-│   ├── fonts.css
-│   └── normalize.css
-├── images/
-├── README.md
-└── .gitignore, .editorconfig, etc.
+- **Dev**: VS Code + **Live Server** (Because this project uses ES modules, you must run it on a local server.)
 
 ---
 
@@ -64,5 +32,3 @@ se_project_todo-app/
 
 This project is deployed on GitHub Pages:  
 **https://alexxavierruiz571.github.io/se_project_todo-app/**
-
-(Because this project uses ES modules, you must run it on a local server.)

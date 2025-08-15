@@ -16,7 +16,7 @@ _setEventListeners(element) {
     checkboxElement.addEventListener("change", (evt) => {
         this._data.completed = evt.target.checked;
     });
-}
+};
 
 getView() {
 const todoElement = document

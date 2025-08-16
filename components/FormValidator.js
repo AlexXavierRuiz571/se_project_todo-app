@@ -67,12 +67,6 @@ resetValidation() {
   this._submitButton.classList.add(this._inactiveButtonClass);
 }
 
-  disableButtonAndResetForm() {
-    this._formElement.reset();
-    this._inputList.forEach((inputElement) => this._hideInputError(inputElement));
-    this._submitButton.classList.add(this._inactiveButtonClass);
-    this._submitButton.disabled = true;
-  }
 }
 
 export { FormValidator };

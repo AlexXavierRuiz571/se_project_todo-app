@@ -26,6 +26,11 @@ const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
 };
 
+function renderTodo(values) {
+  const todo = generateTodo(values);
+  todosList.append(todo);
+}
+
 addTodoButton.addEventListener("click", () => {
   openModal(addTodoPopup);
 });
@@ -36,6 +41,7 @@ addTodoCloseBtn.addEventListener("click", () => {
 
 addTodoForm.addEventListener("submit", (evt) => {
   evt.preventDefault();
+  
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
@@ -43,15 +49,9 @@ addTodoForm.addEventListener("submit", (evt) => {
   date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
 
   const values = { id: uuidv4(), name, date };
-  const todo = generateTodo(values);
-  todosList.append(todo);
-
+  renderTodo(values);
   formValidator.resetValidation();
-
   closeModal(addTodoPopup);
 });
 
-initialTodos.forEach((item) => {
-  const todo = generateTodo(item);
-  todosList.append(todo);
-});
+initialTodos.forEach((item) => renderTodo(item));

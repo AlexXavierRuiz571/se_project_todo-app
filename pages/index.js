@@ -10,7 +10,7 @@ const generateTodo = (data) => {
 
 const addTodoButton = document.querySelector(".button_action_add");
 const addTodoPopup = document.querySelector("#add-todo-popup");
-const addTodoForm = addTodoPopup.querySelector(".popup__form");
+const addTodoForm = document.forms["add-todo-form"];
 
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();

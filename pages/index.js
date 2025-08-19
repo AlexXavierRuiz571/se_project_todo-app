@@ -18,12 +18,23 @@ formValidator.enableValidation();
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
 const todosList = document.querySelector(".todos__list");
 
+const handleEscClose = (evt) => {
+  if (evt.key === "Escape") {
+    const opened = document.querySelector(".popup_visible");
+    if (opened) {
+      closeModal(opened);
+    }
+  }
+};
+
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
+  document.addEventListener("keydown", handleEscClose);
 };
 
 const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
+  document.removeEventListener("keydown", handleEscClose);
 };
 
 function renderTodo(values) {
@@ -45,8 +56,11 @@ addTodoForm.addEventListener("submit", (evt) => {
   const name = evt.target.name.value;
   const dateInput = evt.target.date.value;
 
-  const date = new Date(dateInput);
-  date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  let date;
+  if (dateInput) {
+    date = new Date(dateInput);
+    date.setMinutes(date.getMinutes() + date.getTimezoneOffset());
+  }
 
   const values = { id: uuidv4(), name, date };
   renderTodo(values);

@@ -2,6 +2,7 @@ import { v4 as uuidv4 } from "https://cdn.jsdelivr.net/npm/uuid@9.0.0/dist/esm-b
 import { Todo } from "../components/Todo.js";
 import { FormValidator } from "../components/FormValidator.js";
 import { initialTodos, validationConfig } from "../utils/constants.js";
+import { Section } from "../components/Section.js";
 
 const generateTodo = (data) => {
   const todo = new Todo(data, "#todo-template");
@@ -16,7 +17,6 @@ const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
 const addTodoCloseBtn = addTodoPopup.querySelector(".popup__close");
-const todosList = document.querySelector(".todos__list");
 
 const handleEscClose = (evt) => {
   if (evt.key === "Escape") {
@@ -27,6 +27,19 @@ const handleEscClose = (evt) => {
   }
 };
 
+let todoSection;
+
+todoSection = new Section({
+  items: initialTodos,
+  containerSelector: ".todos__list",
+  renderer: (item) => {
+    const element = generateTodo(item);
+    todoSection.addItem(element);
+  }
+});
+
+todoSection.renderItems();
+
 const openModal = (modal) => {
   modal.classList.add("popup_visible");
   document.addEventListener("keydown", handleEscClose);
@@ -36,11 +49,6 @@ const closeModal = (modal) => {
   modal.classList.remove("popup_visible");
   document.removeEventListener("keydown", handleEscClose);
 };
-
-function renderTodo(values) {
-  const todo = generateTodo(values);
-  todosList.append(todo);
-}
 
 addTodoButton.addEventListener("click", () => {
   openModal(addTodoPopup);
@@ -63,9 +71,8 @@ addTodoForm.addEventListener("submit", (evt) => {
   }
 
   const values = { id: uuidv4(), name, date };
-  renderTodo(values);
+  todoSection.addItem(generateTodo(values));
   formValidator.resetValidation();
   closeModal(addTodoPopup);
 });
 
-initialTodos.forEach((item) => renderTodo(item));

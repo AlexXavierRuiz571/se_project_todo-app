@@ -1,7 +1,8 @@
 class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, counter) {
     this._data = data;
     this._selector = selector;
+    this._counter = counter;
   }
 
   _setEventListeners(element) {
@@ -10,10 +11,19 @@ class Todo {
 
     deleteButton.addEventListener("click", () => {
       element.remove();
+      if (this._counter) {
+        this._counter.updateTotal(false);
+        if (this._data.completed) {
+          this._counter.updateCompleted(false);
+        }
+      }
     });
 
     checkboxElement.addEventListener("change", (evt) => {
       this._data.completed = evt.target.checked;
+      if (this._counter) {
+        this._counter.updateCompleted(evt.target.checked);
+      }
     });
   }
 

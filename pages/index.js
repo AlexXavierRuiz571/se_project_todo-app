@@ -39,9 +39,7 @@ const addTodoForm = document.forms["add-todo-form"];
 const formValidator = new FormValidator(validationConfig, addTodoForm);
 formValidator.enableValidation();
 
-let todoSection;
-
-todoSection = new Section({
+const todoSection = new Section({
   items: initialTodos,
   containerSelector: ".todos__list",
   renderer: (item) => {
